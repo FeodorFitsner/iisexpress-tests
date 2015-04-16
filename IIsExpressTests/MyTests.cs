@@ -26,14 +26,12 @@ namespace IIsExpressTests
             iisProcess.Start();
 
             // give it some time to start
-            Task.Delay(TimeSpan.FromSeconds(5)).Wait();
+            Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
             // verify results
             using(var wc = new WebClient())
             {
                 var result = wc.DownloadString("http://localhost:8088");
-                Console.WriteLine(result);
-
                 Assert.Equal("<h1>Hello, world!</h1>", result);
             }
         }
