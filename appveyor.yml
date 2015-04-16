@@ -4,5 +4,5 @@ cache:
 before_build:
 - nuget restore
 
-before_test:
+after_test:
 - ps: Invoke-WebRequest http://localhost:8088
