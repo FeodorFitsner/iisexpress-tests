@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -55,6 +56,28 @@ namespace IIsExpressTests
                 {
                     var result = wc.DownloadString("https://www.google.com/123");
                 });
+            }
+        }
+
+        [Fact]
+        public void Query_Google_with_HttpClient()
+        {
+            using(var client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromSeconds(5);
+                var result = client.GetStringAsync("https://www.google.com").Result;
+                Assert.Contains("<title>Google</title>", result, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
+        [Fact]
+        public void Query_Google_nonexist_with_HttpClient_returns_404()
+        {
+            using (var client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromSeconds(5);
+                var response = client.GetAsync("https://www.google.com/123").Result;
+                Assert.Equal<HttpStatusCode>(HttpStatusCode.NotFound, response.StatusCode);
             }
         }
     }
