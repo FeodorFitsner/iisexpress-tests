@@ -3,3 +3,6 @@ cache:
 
 before_build:
 - nuget restore
+
+before_test:
+- ps: Invoke-WebRequest http://localhost:8088
