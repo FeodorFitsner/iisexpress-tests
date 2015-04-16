@@ -6,3 +6,5 @@ before_build:
 
 after_test:
 - ps: Invoke-WebRequest http://localhost:8088
+- ps: Invoke-WebRequest http://localhost:8088/test1.aspx
+- ps: Invoke-WebRequest http://localhost:8088/test2.cshtml
