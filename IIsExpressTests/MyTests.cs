@@ -37,12 +37,24 @@ namespace IIsExpressTests
         }
 
         [Fact]
-        public void Query_Google()
+        public void Query_Google_with_WebClient()
         {
             using(var wc = new WebClient())
             {
                 var result = wc.DownloadString("https://www.google.com");
                 Assert.Contains("<title>Google</title>", result, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
+        [Fact]
+        public void Query_Google_nonexist_with_WebClient_returns_404()
+        {
+            using (var wc = new WebClient())
+            {
+                Assert.Throws(typeof(System.Net.WebException), () =>
+                {
+                    var result = wc.DownloadString("https://www.google.com/123");
+                });
             }
         }
     }
