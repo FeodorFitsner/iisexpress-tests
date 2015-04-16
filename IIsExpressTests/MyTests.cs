@@ -12,7 +12,7 @@ namespace IIsExpressTests
 {
     public class MyTests
     {
-        [Fact]
+        //[Fact]
         public void Run_IIS_Express()
         {
             string applicationFolder = Path.Combine(Environment.GetEnvironmentVariable("appveyor_build_folder"), "website");
@@ -33,6 +33,16 @@ namespace IIsExpressTests
             {
                 var result = wc.DownloadString("http://localhost:8088/default.htm");
                 Assert.Equal("<h1>Hello, world!</h1>", result);
+            }
+        }
+
+        [Fact]
+        public void Query_Google()
+        {
+            using(var wc = new WebClient())
+            {
+                var result = wc.DownloadString("https://www.google.com");
+                Assert.Contains("<title>Google</title>", result, StringComparison.OrdinalIgnoreCase);
             }
         }
     }
