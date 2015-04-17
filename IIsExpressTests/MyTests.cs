@@ -80,5 +80,26 @@ namespace IIsExpressTests
                 Assert.Equal<HttpStatusCode>(HttpStatusCode.NotFound, response.StatusCode);
             }
         }
+
+        [Fact]
+        public void Query_Google_with_WebRequest()
+        {
+            var request = (HttpWebRequest)WebRequest.Create("https://www.google.com");
+            request.Method = "GET";
+            request.ContentLength = 0;
+            request.Timeout = 10000;
+
+            using(var response = (HttpWebResponse)request.GetResponse())
+            {
+                using(var stream = response.GetResponseStream())
+                {
+                    using(var reader = new StreamReader(stream))
+                    {
+                        var result = reader.ReadToEnd();
+                        Assert.Contains("<title>Google</title>", result, StringComparison.OrdinalIgnoreCase);
+                    }
+                }
+            }
+        }
     }
 }
