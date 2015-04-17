@@ -1,6 +1,8 @@
 cache:
 - packages -> **\packages.config
 
+configuration: release
+
 before_build:
 - nuget restore
 
