@@ -101,5 +101,19 @@ namespace IIsExpressTests
                 }
             }
         }
+
+        [Fact]
+        public void Query_Google_nonexist_with_WebRequest_returns_404()
+        {
+            var request = (HttpWebRequest)WebRequest.Create("https://www.google.com/123");
+            request.Method = "GET";
+            request.ContentLength = 0;
+            request.Timeout = 10000;
+
+            using (var response = (HttpWebResponse)request.GetResponse())
+            {
+                Assert.Equal<HttpStatusCode>(HttpStatusCode.NotFound, response.StatusCode);
+            }
+        }
     }
 }
