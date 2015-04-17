@@ -110,9 +110,15 @@ namespace IIsExpressTests
             request.ContentLength = 0;
             request.Timeout = 10000;
 
-            using (var response = (HttpWebResponse)request.GetResponse())
+            try
             {
-                Assert.Equal<HttpStatusCode>(HttpStatusCode.NotFound, response.StatusCode);
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                }
+            }
+            catch(WebException ex)
+            {
+                Assert.Equal<HttpStatusCode>(HttpStatusCode.NotFound, ((HttpWebResponse)ex.Response).StatusCode);
             }
         }
     }
