@@ -3,8 +3,17 @@ cache:
 
 configuration: release
 
+install:
+- set IIS_USER_HOME=%USERPROFILE%\Documents\IISExpress
+- md %IIS_USER_HOME%\Logs
+- md %IIS_USER_HOME%\TraceLogFiles
+
 before_build:
 - nuget restore
+
+after_build:
+- dir %IIS_USER_HOME%\Logs
+- dir %IIS_USER_HOME%\TraceLogFiles
 
 #after_test:
 #- ps: Invoke-WebRequest http://localhost:8088

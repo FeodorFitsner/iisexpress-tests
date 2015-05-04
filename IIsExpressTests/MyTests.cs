@@ -13,7 +13,7 @@ namespace IIsExpressTests
 {
     public class MyTests
     {
-        //[Fact]
+        [Fact]
         public void Run_IIS_Express()
         {
             string applicationFolder = Path.Combine(Environment.GetEnvironmentVariable("appveyor_build_folder"), "website");
@@ -37,7 +37,7 @@ namespace IIsExpressTests
             }
         }
 
-        [Fact]
+        //[Fact]
         public void Query_Google_with_WebClient()
         {
             using(var wc = new WebClient())
@@ -47,7 +47,7 @@ namespace IIsExpressTests
             }
         }
 
-        [Fact]
+        //[Fact]
         public void Query_Google_nonexist_with_WebClient_returns_404()
         {
             using (var wc = new WebClient())
@@ -59,7 +59,7 @@ namespace IIsExpressTests
             }
         }
 
-        [Fact]
+        //[Fact]
         public void Query_Google_with_HttpClient()
         {
             using(var client = new HttpClient())
@@ -70,7 +70,7 @@ namespace IIsExpressTests
             }
         }
 
-        [Fact]
+        //[Fact]
         public void Query_Google_nonexist_with_HttpClient_returns_404()
         {
             using (var client = new HttpClient())
@@ -81,7 +81,7 @@ namespace IIsExpressTests
             }
         }
 
-        [Fact]
+        //[Fact]
         public void Query_Google_with_WebRequest()
         {
             var request = (HttpWebRequest)WebRequest.Create("https://www.google.com");
@@ -102,7 +102,7 @@ namespace IIsExpressTests
             }
         }
 
-        [Fact]
+        //[Fact]
         public void Query_Google_nonexist_with_WebRequest_returns_404()
         {
             var request = (HttpWebRequest)WebRequest.Create("https://www.google.com/123");
