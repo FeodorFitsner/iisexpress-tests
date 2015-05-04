@@ -11,7 +11,7 @@ install:
 before_build:
 - nuget restore
 
-after_build:
+after_test:
 - dir %IIS_USER_HOME%\Logs
 - dir %IIS_USER_HOME%\TraceLogFiles
 
