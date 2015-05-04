@@ -12,8 +12,8 @@ before_build:
 - nuget restore
 
 after_test:
-- dir %IIS_USER_HOME%\Logs
-- dir %IIS_USER_HOME%\TraceLogFiles
+- dir "%IIS_USER_HOME%\Logs\Development Web Site"
+- dir "%IIS_USER_HOME%\TraceLogFiles\Development Web Site"
 
 #after_test:
 #- ps: Invoke-WebRequest http://localhost:8088
